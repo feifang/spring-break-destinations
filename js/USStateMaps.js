@@ -16,7 +16,8 @@ var map1 = AmCharts.makeChart( "map-count", {
     areas: countByStateAll
   },
   areasSettings: {
-     autoZoom: true,
+     autoZoom: false,
+
      balloonText: "[[title]]: [[value]] tweets <br> [[percent]]% of total tweets"
   },
   "balloon": {
@@ -45,7 +46,7 @@ var map2 = AmCharts.makeChart( "map-sentiment", {
 
   areasSettings: {
     autoZoom: true,
-     balloonText: "[[title]]: [[value]]"
+    balloonText: "[[title]]: [[value]]"
   },
    "balloon": {
    maxWidth: 175

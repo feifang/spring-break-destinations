@@ -34,6 +34,12 @@ var chart1 = AmCharts.makeChart("top-states", {
   },
   "export": {
     "enabled": true
-  }
+  },
+  "listeners": [{
+    "event": "clickGraphItem",
+    "method": function(event) {
+      alert(event.item.category);
+    }
+  }]
 
 });

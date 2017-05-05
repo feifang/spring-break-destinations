@@ -31,6 +31,15 @@
 				height:400px;
     }
 
+#wordcloud-panel {
+  width: 93%
+  border: 1px solid #ddd;
+}
+#mywordcloud {
+  margin: 10px 30px;
+  float: left;
+}
+
 </style>
 
 <!-- histogram panel -->
@@ -42,8 +51,22 @@
   <div id="map-sentiment" class="map-box"></div>
 </div>
 
-<div class="container">
+<div id="wordcloud-panel">
   <div id='mywordcloud'></div>
+  <br>
+  <select onchange="selectArea(this);" id="select">
+    <option value="">Select a destination</option>
+    <optgroup label="Europe">
+      <option value="FR">France</option>
+      <option value="DE">Germany</option>
+      <option value="ES">Spain</option>
+    </optgroup>
+    <optgroup label="Middle East">
+      <option value="AE">UAE</option>
+      <option value="IR">Iran</option>
+      <option value="IQ">Iraq</option>
+    </optgroup>
+  </select>
 </div>
 
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -76,7 +99,7 @@ var numOfWords = 250;
 
 d3.wordcloud()
   .selector("#mywordcloud") //default: wordcloud
-  .size([0.9*screen.width, 400])
+  .size([0.82*screen.width, 400])
   .scale("log") //default: sqrt
   .font("Impact")
   .fill(d3.scale.category20())
