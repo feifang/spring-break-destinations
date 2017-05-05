@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+
+</style>
+
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<div id="chartdiv"></div>
+
+
+
+<script>
+
+var chart = AmCharts.makeChart("chartdiv", {
+  "type": "serial",
+  "theme": "light",
+  "marginRight": 70,
+  "autoMarginOffset": 20,
+  "dataProvider": [{"count": 563, "time": "2017-02-16"},{"count": 272, "time": "2017-02-17"},{"count": 641, "time": "2017-02-18"},{"count": 925, "time": "2017-02-19"},{"count": 1352, "time": "2017-02-20"},{"count": 1616, "time": "2017-02-21"},{"count": 1551, "time": "2017-02-22"},{"count": 1764, "time": "2017-02-23"},{"count": 1731, "time": "2017-02-24"},{"count": 1351, "time": "2017-02-25"},{"count": 1792, "time": "2017-02-26"},{"count": 2242, "time": "2017-02-27"},{"count": 2414, "time": "2017-02-28"},{"count": 2748, "time": "2017-03-01"},{"count": 3432, "time": "2017-03-02"},{"count": 4223, "time": "2017-03-03"},{"count": 3162, "time": "2017-03-04"},{"count": 3196, "time": "2017-03-05"},{"count": 8877, "time": "2017-03-06"},{"count": 8357, "time": "2017-03-07"},{"count": 6903, "time": "2017-03-08"},{"count": 7505, "time": "2017-03-09"},{"count": 14229, "time": "2017-03-10"},{"count": 11878, "time": "2017-03-11"},{"count": 10259, "time": "2017-03-12"},{"count": 12701, "time": "2017-03-13"},{"count": 11778, "time": "2017-03-14"},{"count": 10278, "time": "2017-03-15"},{"count": 10502, "time": "2017-03-16"},{"count": 9305, "time": "2017-03-17"},{"count": 7721, "time": "2017-03-18"},{"count": 8745, "time": "2017-03-19"},{"count": 9172, "time": "2017-03-20"},{"count": 7069, "time": "2017-03-21"},{"count": 5908, "time": "2017-03-22"},{"count": 5804, "time": "2017-03-23"},{"count": 5710, "time": "2017-03-24"},{"count": 5060, "time": "2017-03-25"},{"count": 4014, "time": "2017-03-26"},{"count": 6244, "time": "2017-03-27"},{"count": 4874, "time": "2017-03-28"},{"count": 4435, "time": "2017-03-29"},{"count": 2248, "time": "2017-03-30"}],
+  "balloon": {
+    "cornerRadius": 6
+  },
+  "valueAxes": [{
+    "axisAlpha": 0,
+    "title": "Tweets Count"
+  }],
+  "graphs": [{
+    "id": "g1",
+    "fillAlphas": 0,
+    "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]] </span></b>",
+    "bullet": "round",
+    "bulletSize": 6,
+    "connect": false,
+    "lineColor": "#d1655d",
+    "lineThickness": 2,
+    "negativeLineColor": "#637bb6",
+    "type": "smoothedLine",
+    "valueField": "count"
+  }],
+  "chartCursor": {
+    "categoryBalloonDateFormat": "MMMM DD, JJ:00",
+    "cursorAlpha": 0.1,
+    "cursorColor": "#000000",
+    "fullWidth": true,
+    "graphBulletSize": 2
+  },
+  "chartScrollbar": {
+    "graph": "g1",
+    "scrollbarHeight": 80,
+    "backgroundAlpha": 0,
+    "selectedBackgroundAlpha": 0.1,
+    "selectedBackgroundColor": "#888888",
+    "graphFillAlpha": 0,
+    "graphLineAlpha": 0.5,
+    "selectedGraphFillAlpha": 0,
+    "selectedGraphLineAlpha": 1,
+    "autoGridCount": true,
+    "color": "#AAAAAA"
+  },
+  "dataDateFormat": "YYYY MM DD JJ",
+  "categoryField": "time",
+  "categoryAxis": {
+    "minPeriod": "hh",
+    "parseDates": true
+  },
+  "export": {
+    "enabled": true
+  }
+});
+
+chart.addListener("dataUpdated", zoomChart);
+zoomChart();
+
+function zoomChart() {
+  chart.zoomToIndexes(chart.dataProvider.length - (24 * 22 + 15), chart.dataProvider.length - (24 * 15 + 15));
+}
+
+chart.addListener("rendered", function(event) {
+  event.chart.zoomToDates(new Date(2016, 02, 14), new Date(2016, 02, 20));
+});
+
+
+</script>

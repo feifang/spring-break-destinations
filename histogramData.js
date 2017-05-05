@@ -1,0 +1,76 @@
+var topStatesCountWithSentiment = [{
+  'color': '#fef0d9',
+  'amount': 4950,
+  'score': 0.242,
+  'name': 'Florida'
+}, {
+  'color': '#fdbb84',
+  'amount': 4094,
+  'score': 0.276,
+  'name': 'Texas'
+}, {
+  'color': '#fdd49e',
+  'amount': 2638,
+  'score': 0.271,
+  'name': 'California'
+}, {
+  'color': '#fc8d59',
+  'amount': 772,
+  'score': 0.332,
+  'name': 'New York'
+}, {
+  'color': '#fc8d59',
+  'amount': 698,
+  'score': 0.32,
+  'name': 'Arizona'
+}, {
+  'color': '#fef0d9',
+  'amount': 602,
+  'score': 0.248,
+  'name': 'Illinois'
+}, {
+  'color': '#fdd49e',
+  'amount': 512,
+  'score': 0.254,
+  'name': 'Georgia'
+}, {
+  'color': '#fef0d9',
+  'amount': 492,
+  'score': 0.246,
+  'name': 'Tennessee'
+}, {
+  'color': '#fef0d9',
+  'amount': 438,
+  'score': 0.241,
+  'name': 'Nevada'
+}, {
+  'color': '#fdbb84',
+  'amount': 431,
+  'score': 0.276,
+  'name': 'Ohio'
+}, {
+  'color': '#fdd49e',
+  'amount': 404,
+  'score': 0.259,
+  'name': 'North Carolina'
+}, {
+  'color': '#fef0d9',
+  'amount': 379,
+  'score': 0.25,
+  'name': 'Alabama'
+}, {
+  'color': '#fdbb84',
+  'amount': 379,
+  'score': 0.298,
+  'name': 'Missouri'
+}, {
+  'color': '#fdd49e',
+  'amount': 371,
+  'score': 0.252,
+  'name': 'South Carolina'
+}, {
+  'color': '#fef0d9',
+  'amount': 327,
+  'score': 0.21,
+  'name': 'Pennsylvania'
+}]

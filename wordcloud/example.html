@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Word Cloud</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../lib/d3/d3.js" charset="utf-8"></script>
+    <script src="../lib/d3/d3.layout.cloud.js"></script>
+    <script src="../lib/d3/d3.wordcloud.js"></script>
+    <!-- make sure data and stopwords are loaded before wordcount.js -->
+    <script src="textbystate.js" charset="utf-8"></script>
+    <script src="stopwords.js"></script>
+    <script src="../js/wordcount.js"></script>
+  </head>
+  <body style="text-align: center">
+    <h1>All-in-one D3 WordCloud: </h1>
+    <h2>from text to visualization</h2>
+    <div id='mywordcloud'></div>
+    <p><a href="https://github.com/feifang/d3-wordcloud">Try on Github</a></p>
+    <script>
+      /*
+      * Load sample data
+      */
+      var stringData = FL;
+      var numOfWords = 400;
+
+      d3.wordcloud()
+        .selector("#mywordcloud") //default: wordcloud
+        .size([700, 500])
+        .scale("log") //default: sqrt
+        .font("Impact")
+        .fill(d3.scale.category20())
+        .words(count(stringData, numOfWords))
+        .spiral("archimedean")
+        .onwordclick(function(d, i) {window.location = "https://www.google.co.uk/search?q=" + d.text;})
+        .start();
+    </script>
+  </body>
+</html>
