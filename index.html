@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+.container {
+  text-align: center;
+}
 
 /*histogram panel*/
 #top-states {
@@ -10,6 +13,10 @@
 }
 
 /*map panel*/
+.amcharts-chart-div{
+	z-index: 2; /*needs to be higher than legend so as to enable hover effect*/
+}
+
 .amcharts-legend-div{
 	z-index: 1
 }
@@ -23,10 +30,6 @@
 				width:47%;
 				height:400px;
     }
-/*.amcharts-export-menu-top-right {
-  top: 10px;
-  right: 0;
-}*/
 
 </style>
 
@@ -34,9 +37,13 @@
 <div id="top-states"></div>
 
 <!-- map panel -->
-<div id="map-container">
+<div class="container">
   <div id="map-count" class="map-box"></div>
   <div id="map-sentiment" class="map-box"></div>
+</div>
+
+<div class="container">
+  <div id='mywordcloud'></div>
 </div>
 
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -44,20 +51,38 @@
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
 <script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
-<!-- <script src="https://www.amcharts.com/lib/3/themes/default.js"></script> -->
 <script src="lib/jquery-1.12.3.min.js"></script>
-<script src="data/mapData.js"></script>
-<script src="js/USStateMaps.js"></script>
-<!-- make sure data is loaded before topStates.js -->
+<script src="lib/d3/d3.js" charset="utf-8"></script>
+<script src="lib/d3/d3.layout.cloud.js"></script>
+<script src="lib/d3/d3.wordcloud.js"></script>
+
+<!-- make sure data is loaded before js/* -->
 <script src="data/histogramData.js"></script>
+<script src="data/mapData.js"></script>
+<script src="data/textbystate.js" charset="utf-8"></script>
+<script src="data/stopwords.js"></script>
+
 <script src="js/topStates.js"></script>
-
-
-
-
+<script src="js/USStateMaps.js"></script>
+<script src="js/wordcount.js"></script>
 
 <script>
 
+/*
+* Load wordcloud data
+*/
+var stringData = FL;
+var numOfWords = 250;
 
+d3.wordcloud()
+  .selector("#mywordcloud") //default: wordcloud
+  .size([0.9*screen.width, 400])
+  .scale("log") //default: sqrt
+  .font("Impact")
+  .fill(d3.scale.category20())
+  .words(count(stringData, numOfWords))
+  .spiral("archimedean")
+  .onwordclick(function(d, i) {window.location = "https://www.google.co.uk/search?q=" + d.text;})
+  .start();
 
 </script>

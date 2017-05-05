@@ -20,11 +20,11 @@
       * Load sample data
       */
       var stringData = FL;
-      var numOfWords = 400;
+      var numOfWords = 250;
 
       d3.wordcloud()
         .selector("#mywordcloud") //default: wordcloud
-        .size([700, 500])
+        .size([0.9*screen.width, 400])
         .scale("log") //default: sqrt
         .font("Impact")
         .fill(d3.scale.category20())
