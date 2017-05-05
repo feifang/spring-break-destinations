@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-#chartdiv {
-  width: 100%;
-  height: 500px;
-  font-size: 11px;
-}
-
-/*.amcharts-export-menu-top-right {
-  top: 10px;
-  right: 0;
-}*/
-
-</style>
-
-<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-<script src="https://www.amcharts.com/lib/3/serial.js"></script>
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-<script src="histogramData.js"></script>
-<div id="chartdiv"></div>
-
-
-
-<script>
-
-var chart = AmCharts.makeChart("chartdiv", {
+var chart1 = AmCharts.makeChart("top-states", {
   "type": "serial",
   "theme": "light",
   "marginRight": 70,
@@ -51,7 +24,7 @@ var chart = AmCharts.makeChart("chartdiv", {
   },
   "categoryField": "name",
   "categoryAxis": {
-    "title": "Top States",
+    // "title": "Top States",
     "gridPosition": "start",
     "labelRotation": 45
   },
@@ -64,5 +37,3 @@ var chart = AmCharts.makeChart("chartdiv", {
   }
 
 });
-
-</script>

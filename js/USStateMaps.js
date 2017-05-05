@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-.amcharts-legend-div{
-	z-index: 1
-}
-
-.box{
-        display:inline-block;
-        padding: 10px 15px 20px 0;
-        border: 1px solid #ddd;
-        background: #eee;
-        margin: 10px;
-				width:47%;
-				height:400px;
-    }
-
-#selectField{
-        border: 1px solid #ddd;
-    }
-
-</style>
-
-<!-- <select id="selectField">
-		<option value="chart2div">Tweets Sentiment</option>
-    <option value="chart1div">Tweets Amount</option>
-</select> -->
-
-<div id="chart1div" class="box"></div>
-<div id="chart2div" class="box"></div>
-
-
-<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/themes/default.js"></script>
-<script src="lib/jquery-1.12.3.min.js"></script>
-<script src="mapData.js"></script>
-
-
-<script>
-
-var map_count = AmCharts.makeChart( "chart1div", {
+var map1 = AmCharts.makeChart( "map-count", {
   type: "map",
   "theme": "default",
   colorSteps: 8,
@@ -68,7 +26,7 @@ var map_count = AmCharts.makeChart( "chart1div", {
      enabled: false
   }
 } );
-var map_sentiment = AmCharts.makeChart( "chart2div", {
+var map2 = AmCharts.makeChart( "map-sentiment", {
   type: "map",
   "theme": "default",
   "legend": {
@@ -97,16 +55,3 @@ var map_sentiment = AmCharts.makeChart( "chart2div", {
   }
 
 } );
-
-// $(document).ready(function () {
-//         $('#chart1div').hide();    // init: show chart 1
-//         $('#selectField').change(function () {
-//         	map_count.invalidateSize();    // need some time to resize
-//             $(".box").not('#'+$(this).val()).hide();
-//             $('#'+$(this).val()).show();
-//         });
-//     });
-
-</script>
-
-<!--Adapted from https://www.amcharts.com/demos/us-heat-map/#-->
