@@ -54,8 +54,8 @@
 <div id="wordcloud-panel">
   <div id='mywordcloud'></div>
   <br>
-  <select onchange="selectArea(this);" id="select">
-    <option value="">Select a destination</option>
+  <select onchange="selectDestination(this);" id="select">
+    <option value="FL">Select a destination</option>
     <option value="FL">Florida</option>
       <option value="FR">&nbsp;&nbsp;&nbsp;France</option>
       <option value="DE">&nbsp;&nbsp;&nbsp;Germany</option>
@@ -92,7 +92,7 @@
 <!-- make sure data is loaded before js/* -->
 <script src="data/histogramData.js"></script>
 <script src="data/mapData.js"></script>
-<script src="data/textbystate.js" charset="utf-8"></script>
+<script src="data/textByState.js" charset="utf-8"></script>
 <script src="data/stopwords.js"></script>
 
 <script src="js/topStates.js"></script>
@@ -104,18 +104,32 @@
 /*
 * Load wordcloud data
 */
-var stringData = FL;
+var FL = FL;
+var TX = TX;
 var numOfWords = 250;
 
-d3.wordcloud()
+var tweetCloud = d3.wordcloud()
   .selector("#mywordcloud") //default: wordcloud
   .size([0.82*screen.width, 350])
   .scale("log") //default: sqrt
   .font("Impact")
   .fill(d3.scale.category20())
-  .words(count(stringData, numOfWords))
+  .words(count(FL, numOfWords))
   .spiral("archimedean")
   .onwordclick(function(d, i) {window.location = "https://www.google.co.uk/search?q=" + d.text;})
   .start();
+
+function selectDestination(select) {
+    var id = select.options[select.selectedIndex].value;
+    $("#mywordcloud").html("");
+    tweetCloud.selector("#mywordcloud").words(count(window[id], numOfWords)).start();
+
+    // if ( '' == id ) {
+    //     map.clickMapObject(map.dataProvider);
+    // }
+    // else {
+    //     map.clickMapObject(map.getObjectById(id));
+    // }
+}
 
 </script>
