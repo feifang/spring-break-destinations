@@ -58,7 +58,7 @@
     <option value="FL">Select a destination</option>
     <option value="FL">Florida</option>
       <option value="MIB">&nbsp;&nbsp;&nbsp;Miami Beach</option>
-      <option value="OR">&nbsp;&nbsp;&nbsp;Orlando</option>
+      <option value="ORD">&nbsp;&nbsp;&nbsp;Orlando</option>
       <option value="TP">&nbsp;&nbsp;&nbsp;Tampa</option>
     <option value="GA">Georgia</option>
       <option value="GA">&nbsp;&nbsp;&nbsp;Atlanta</option>
@@ -117,6 +117,7 @@ var OR = OR;
 var SPI = SPI;
 var FW = FW;
 var numOfWords = 250;
+var previousId = "FL";
 
 var tweetCloud = d3.wordcloud()
   .selector("#mywordcloud") //default: wordcloud
@@ -129,10 +130,38 @@ var tweetCloud = d3.wordcloud()
   .onwordclick(function(d, i) {window.location = "https://www.google.co.uk/search?q=" + d.text;})
   .start();
 
+
+
+
 function selectDestination(select) {
     var id = select.options[select.selectedIndex].value;
     $("#mywordcloud").html("");
     tweetCloud.selector("#mywordcloud").words(count(window[id], numOfWords)).start();
+
+    // reset outlineColor and outlineThickness for previous one
+    var area1 = map1.getObjectById("US-"+previousId);
+    area1.outlineColor = '#fff';
+    area1.outlineThickness = 1
+    var area2 = map2.getObjectById("US-"+previousId);
+    area2.outlineColor = '#fff';
+    area2.outlineThickness = 1
+    // make the chart take in new color
+    area1.validate();
+    area2.validate();
+
+    // update State color in data
+    var area3 = map1.getObjectById("US-"+id);
+    area3.outlineColor = '#ff0000';
+    area3.outlineThickness = 3
+    var area4 = map2.getObjectById("US-"+id);
+    area4.outlineColor = '#ff0000';
+    area4.outlineThickness = 3
+
+    // make the chart take in new color
+    area3.validate();
+    area4.validate();
+
+    previousId = id
 
     // if ( '' == id ) {
     //     map.clickMapObject(map.dataProvider);
